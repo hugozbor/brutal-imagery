@@ -1,16 +1,15 @@
-
 import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="py-20 px-6 bg-gray-900">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section id="about" className="min-h-[100svh] flex items-center bg-gray-900">
+      <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-light tracking-wider mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wider mb-8">
               ABOUT THE ARTIST
             </h2>
-            <div className="w-24 h-0.5 bg-white mb-8"></div>
+            <div className="w-16 sm:w-24 h-0.5 bg-white mb-8"></div>
             
             <p className="text-lg text-gray-300 leading-relaxed mb-6">
               Welcome to my artistic journey. Through various mediums and expressions, 

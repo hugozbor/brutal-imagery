@@ -14,9 +14,9 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-12 sm:py-20 px-4 sm:px-6">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-12 sm:mb-16">
+    <section id="portfolio" className="min-h-[100svh] py-16 sm:py-20">
+      <div className="container h-full mx-auto px-0 sm:px-6">
+        <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wider mb-4">
             SELECTED WORKS
           </h2>
@@ -27,9 +27,9 @@ const Portfolio = () => {
           {artworks.map((artwork) => (
             <div
               key={artwork.id}
-              className={`group cursor-pointer overflow-hidden bg-gray-900 hover:bg-gray-800 active:bg-gray-700 transition-all duration-300 rounded-lg ${
-                artwork.size === 'large' ? 'md:col-span-2 lg:col-span-2 h-64 sm:h-80' :
-                artwork.size === 'medium' ? 'h-56 sm:h-64' : 'h-44 sm:h-48'
+              className={`group cursor-pointer overflow-hidden bg-gray-900 hover:bg-gray-800 active:bg-gray-700 transition-all duration-300 ${
+                artwork.size === 'large' ? 'md:col-span-2 lg:col-span-2 h-[40vh] sm:h-80' :
+                artwork.size === 'medium' ? 'h-[30vh] sm:h-64' : 'h-[25vh] sm:h-48'
               }`}
             >
               <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
@@ -52,8 +52,8 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12 sm:mt-16">
-          <button className="inline-flex items-center text-white border border-white px-6 sm:px-8 py-3 rounded-lg hover:bg-white hover:text-black active:bg-gray-200 transition-all duration-300 tracking-wider">
+        <div className="text-center mt-12">
+          <button className="inline-flex items-center text-white border border-white px-6 sm:px-8 py-3 hover:bg-white hover:text-black active:bg-gray-200 transition-all duration-300 tracking-wider">
             VIEW ALL WORKS
           </button>
         </div>
