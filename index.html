@@ -505,7 +505,7 @@
                     <img src="images/big-logo.png" alt="HUGOZBOR Logo">
                 </div>
                 <button class="menu-button" onclick="showPage('about')">About</button>
-                <button class="menu-button" onclick="showPage('work')">Work</button>
+                <button class="menu-button" onclick="showPage('gallery')">Gallery</button>
                 <button class="menu-button" onclick="showPage('contact')">Contact</button>
             </div>
             <div class="footer">© HUGOZBOR</div>
@@ -532,10 +532,10 @@
             </div>
         </div>
 
-        <!-- Work Page -->
-        <div id="work" class="page">
-            <button class="back-button" onclick="hidePage('work')">Close</button>
-            <h2 class="page-title">Work</h2>
+        <!-- Gallery Page -->
+        <div id="gallery" class="page">
+            <button class="back-button" onclick="hidePage('gallery')">Close</button>
+            <h2 class="page-title">Gallery</h2>
             <div id="gallery-grid" class="gallery-grid">
                 <!-- Gallery items will be loaded dynamically -->
             </div>
@@ -583,8 +583,8 @@
             // Show the selected page
             document.getElementById(pageId).classList.add('active');
             
-            // If opening work page, load gallery images
-            if (pageId === 'work') {
+            // If opening gallery page, load gallery images
+            if (pageId === 'gallery') {
                 loadGalleryImages();
             }
         }
@@ -617,7 +617,7 @@
                     hideLightbox();
                 } else {
                     hidePage('about');
-                    hidePage('work');
+                    hidePage('gallery');
                     hidePage('contact');
                 }
             }
