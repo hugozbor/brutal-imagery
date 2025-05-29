@@ -22,7 +22,7 @@
 
         body {
             font-family: 'Jackwrite', 'Arial', sans-serif;
-            background: #1a1a1a;
+            background: #000000;
             color: #ffffff;
             min-height: 100vh;
             overflow: hidden;
@@ -42,38 +42,33 @@
             z-index: 9999;
             opacity: 1;
             transition: opacity 0.5s ease-out;
-        }
-
-        .loading-screen.fade-out {
-            opacity: 0;
-            pointer-events: none;
+            pointer-events: none; /* Allow clicks to pass through during fade */
         }
 
         .loading-image {
             opacity: 0;
-            animation: fadeInImage 1.5s ease-in forwards;
+            animation: fadeInOnly 1.5s ease-in forwards;
         }
 
         .loading-image img {
-            width: 150px;
-            height: 150px;
+            width: 450px;
+            height: 450px;
             object-fit: contain;
         }
 
-        @keyframes fadeInImage {
+        @keyframes fadeInOnly {
             0% {
                 opacity: 0;
-                transform: scale(0.8);
             }
             100% {
                 opacity: 1;
-                transform: scale(1);
             }
         }
 
         .main-container {
             opacity: 0;
             transition: opacity 0.5s ease-in;
+            background: #000000;
         }
 
         .main-container.show {
@@ -86,7 +81,7 @@
             background-image: url('images/your-background-image.jpg');
             background-size: cover;
             background-position: center;
-            background-color: #2a2a2a;
+            background-color: #000000;
             position: relative;
             display: flex;
             align-items: center;
@@ -165,7 +160,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: #1a1a1a;
+            background: #000000;
             z-index: 100;
             padding: 60px;
         }
@@ -278,10 +273,10 @@
         .gallery-item {
             position: relative;
             width: 100%;
-            padding-top: 100%; /* Creates a square aspect ratio */
+            padding-top: 100%;
             overflow: hidden;
             cursor: pointer;
-            background: #2a2a2a;
+            background: #000000;
             border-radius: 4px;
         }
 
@@ -374,12 +369,17 @@
                 width: 240px;
                 margin-bottom: 30px;
             }
+
+            .loading-image img {
+                width: 360px;
+                height: 360px;
+            }
         }
 
         @media (max-width: 480px) {
             .loading-image img {
-                width: 120px;
-                height: 120px;
+                width: 300px;
+                height: 300px;
             }
 
             .menu-button {
@@ -566,23 +566,26 @@
     <script>
         // Loading screen functionality
         window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContainer = document.querySelector('.main-container');
+            
+            // Show main content first (but invisible)
+            mainContainer.style.display = 'block';
+            
             setTimeout(function() {
-                const loadingScreen = document.getElementById('loading-screen');
-                const mainContainer = document.querySelector('.main-container');
-                
                 // Fade out loading screen
-                loadingScreen.classList.add('fade-out');
+                loadingScreen.style.opacity = '0';
                 
                 // Show main content
                 setTimeout(function() {
                     mainContainer.classList.add('show');
-                }, 300);
+                }, 500);
                 
-                // Remove loading screen from DOM
+                // Remove loading screen from DOM after fade
                 setTimeout(function() {
                     loadingScreen.style.display = 'none';
-                }, 800);
-            }, 2000); // 2 second delay
+                }, 1000);
+            }, 2000);
         });
 
         function showPage(pageId) {
