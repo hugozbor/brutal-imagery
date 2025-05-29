@@ -536,19 +536,8 @@
         <div id="work" class="page">
             <button class="back-button" onclick="hidePage('work')">Close</button>
             <h2 class="page-title">Work</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" onclick="showLightbox('images/gallery/image1.jpg')">
-                    <img src="images/gallery/image1.jpg" alt="Project 1">
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/gallery/image2.jpg')">
-                    <img src="images/gallery/image2.jpg" alt="Project 2">
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/gallery/image3.jpg')">
-                    <img src="images/gallery/image3.jpg" alt="Project 3">
-                </div>
-                <div class="gallery-item" onclick="showLightbox('images/gallery/image4.jpg')">
-                    <img src="images/gallery/image4.jpg" alt="Project 4">
-                </div>
+            <div id="gallery-grid" class="gallery-grid">
+                <!-- Gallery items will be loaded dynamically -->
             </div>
         </div>
 
@@ -593,6 +582,11 @@
         function showPage(pageId) {
             // Show the selected page
             document.getElementById(pageId).classList.add('active');
+            
+            // If opening work page, load gallery images
+            if (pageId === 'work') {
+                loadGalleryImages();
+            }
         }
 
         function hidePage(pageId) {
@@ -628,6 +622,55 @@
                 }
             }
         });
+
+        // Function to load gallery images
+        async function loadGalleryImages() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            try {
+                // Get the list of files from the gallery directory
+                const response = await fetch('/list-gallery');
+                const images = await response.json();
+                
+                // Clear existing gallery items
+                galleryGrid.innerHTML = '';
+                
+                // Add each image to the gallery
+                images.forEach((image, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.onclick = () => showLightbox(`images/gallery/${image}`);
+                    
+                    const img = document.createElement('img');
+                    img.src = `images/gallery/${image}`;
+                    img.alt = `Project ${index + 1}`;
+                    img.loading = 'lazy';
+                    
+                    galleryItem.appendChild(img);
+                    galleryGrid.appendChild(galleryItem);
+                });
+            } catch (error) {
+                console.error('Error loading gallery images:', error);
+                // Fallback to static gallery items if the dynamic loading fails
+                galleryGrid.innerHTML = `
+                    <div class="gallery-item" onclick="showLightbox('images/gallery/image1.jpg')">
+                        <img src="images/gallery/image1.jpg" alt="Project 1" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="showLightbox('images/gallery/image2.jpg')">
+                        <img src="images/gallery/image2.jpg" alt="Project 2" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="showLightbox('images/gallery/image3.jpg')">
+                        <img src="images/gallery/image3.jpg" alt="Project 3" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="showLightbox('images/gallery/image4.jpg')">
+                        <img src="images/gallery/image4.jpg" alt="Project 4" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="showLightbox('images/gallery/image5.jpg')">
+                        <img src="images/gallery/image5.jpg" alt="Project 5" loading="lazy">
+                    </div>
+                `;
+            }
+        }
     </script>
 </body>
 </html>
