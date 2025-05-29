@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design Portfolio</title>
     <style>
+        /* Base styles */
         * {
             margin: 0;
             padding: 0;
@@ -74,7 +75,7 @@
         .main-screen {
             width: 100vw;
             height: 100vh;
-            background-image: url('your-background-image.jpg');
+            background-image: url('images/your-background-image.jpg');
             background-size: cover;
             background-position: center;
             background-color: #2a2a2a;
@@ -249,53 +250,67 @@
             display: block;
         }
 
+        /* Gallery styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
         /* Lightbox styles */
         .lightbox {
             display: none;
             position: fixed;
-            z-index: 999;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            animation: fadeIn 0.3s ease;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 40px;
         }
 
-        .lightbox-content {
-            margin: auto;
-            display: block;
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
             max-width: 90%;
-            max-height: 80%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            max-height: 90vh;
+            object-fit: contain;
         }
 
         .lightbox-close {
             position: absolute;
             top: 20px;
-            right: 35px;
-            color: #ffffff;
-            font-size: 40px;
-            font-weight: bold;
+            right: 20px;
+            color: white;
+            font-size: 30px;
             cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .lightbox-close:hover {
-            color: #cccccc;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #ffffff;
-            font-size: 16px;
-            text-align: center;
+            background: none;
+            border: none;
+            padding: 10px;
         }
 
         @media (max-width: 768px) {
@@ -417,74 +432,71 @@
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-image">
-            <img src="logo.png" alt="Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMUExQTFBIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNDAiIHN0cm9rZT0iI0NDQ0NDQyIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjxwb2x5Z29uIHBvaW50cz0iMTAwLDcwIDEyMCwxMjAgODAsMTIwIiBmaWxsPSIjQ0NDQ0NDIi8+Cjwvc3ZnPg=='" loading="eager">
+            <img src="images/logo.png" alt="Portfolio Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMUExQTFBIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iNDAiIHN0cm9rZT0iI0NDQ0NDQyIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjxwb2x5Z29uIHBvaW50cz0iMTAwLDcwIDEyMCwxMjAgODAsMTIwIiBmaWxsPSIjQ0NDQ0NDIi8+Cjwvc3ZnPg=='" loading="eager">
         </div>
     </div>
 
     <!-- Main Screen -->
-    <div class="main-screen">
-        <div class="menu-container">
-            <button class="menu-button" onclick="showPage('gallery')">Gallery</button>
-            <button class="menu-button" onclick="showPage('about')">About</button>
-            <button class="menu-button" onclick="showPage('contact')">Contact</button>
+    <div class="main-container">
+        <div class="main-screen">
+            <div class="menu-container">
+                <button class="menu-button" onclick="showPage('about')">About</button>
+                <button class="menu-button" onclick="showPage('work')">Work</button>
+                <button class="menu-button" onclick="showPage('contact')">Contact</button>
+            </div>
+            <div class="footer">© 2024 Design Portfolio</div>
+            <div class="version">v1.0</div>
         </div>
-    </div>
 
-    <!-- Gallery Page -->
-    <div id="gallery" class="page">
-        <button class="back-button" onclick="goHome()">← Back</button>
-        <h2 class="page-title">Gallery</h2>
-        <div class="gallery-row">
-            <div class="gallery-item" onclick="openLightbox('placeholder-1.jpg', 'Image 1')">
-                <img src="placeholder-1.jpg" alt="Gallery Image 1" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjM0EzQTNBIi8+CjxwYXRoIGQ9Ik0xNTAgNzVMMTI1IDEyNUgxNzVMMTUwIDc1WiIgZmlsbD0iIzY2NjY2NiIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTAiIHI9IjUwIiBzdHJva2U9IiM2NjY2NjYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIxNTAiIHk9IjIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5JbWFnZSBQbGFjZWhvbGRlcjwvdGV4dD4KPC9zdmc+'" loading="lazy">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('placeholder-2.jpg', 'Image 2')">
-                <img src="placeholder-2.jpg" alt="Gallery Image 2" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjM0EzQTNBIi8+CjxwYXRoIGQ9Ik0xNTAgNzVMMTI1IDEyNUgxNzVMMTUwIDc1WiIgZmlsbD0iIzY2NjY2NiIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTAiIHI9IjUwIiBzdHJva2U9IiM2NjY2NjYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIxNTAiIHk9IjIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5JbWFnZSBQbGFjZWhvbGRlcjwvdGV4dD4KPC9zdmc+'" loading="lazy">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('placeholder-3.jpg', 'Image 3')">
-                <img src="placeholder-3.jpg" alt="Gallery Image 3" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjM0EzQTNBIi8+CjxwYXRoIGQ9Ik0xNTAgNzVMMTI1IDEyNUgxNzVMMTUwIDc1WiIgZmlsbD0iIzY2NjY2NiIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTAiIHI9IjUwIiBzdHJva2U9IiM2NjY2NjYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIxNTAiIHk9IjIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5JbWFnZSBQbGFjZWhvbGRlcjwvdGV4dD4KPC9zdmc+'" loading="lazy">
-            </div>
-            <div class="gallery-item" onclick="openLightbox('placeholder-4.jpg', 'Image 4')">
-                <img src="placeholder-4.jpg" alt="Gallery Image 4" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjM0EzQTNBIi8+CjxwYXRoIGQ9Ik0xNTAgNzVMMTI1IDEyNUgxNzVMMTUwIDc1WiIgZmlsbD0iIzY2NjY2NiIvPgo8Y2lyY2xlIGN4PSIxNTAiIGN5PSIxNTAiIHI9IjUwIiBzdHJva2U9IiM2NjY2NjYiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIxNTAiIHk9IjIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzk5OTk5OSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5JbWFnZSBQbGFjZWhvbGRlcjwvdGV4dD4KPC9zdmc+'" loading="lazy">
-            </div>
-        </div>
-    </div>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-        <div class="lightbox-caption" id="lightbox-caption"></div>
-    </div>
-
-    <!-- About Page -->
-    <div id="about" class="page">
-        <button class="back-button" onclick="goHome()">← Back</button>
-        <h2 class="page-title">About</h2>
-        <div class="about-content">
-            <div class="about-image">
-                <img src="about-photo.jpg" alt="About Me" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjM0EzQTNBIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiM2NjY2NjYiLz4KPHBhdGggZD0iTTEwMCAyMDBDMTAwIDE3Mi4zOSAxMjIuMzkgMTUwIDE1MCAxNTBDMTc3LjYxIDE1MCAyMDAgMTcyLjM5IDIwMCAyMDBWMjMwSDEwMFYyMDBaIiBmaWxsPSIjNjY2NjY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5OTk5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPlByb2ZpbGUgUGhvdG88L3RleHQ+Cjwvc3ZnPg=='" loading="lazy">
-            </div>
-            <div class="about-text">
-                <p class="page-text">I'm a passionate designer with over five years of experience creating meaningful visual experiences. My work spans digital and print media, with a focus on clean, functional design that serves both aesthetic and practical purposes.</p>
-                <p class="page-text">My approach combines strategic thinking with creative execution, always keeping the end user in mind. I believe great design should be both beautiful and purposeful.</p>
-                <p class="page-text">When I'm not designing, you can find me exploring new creative techniques, studying design trends, or working on personal art projects that fuel my professional inspiration.</p>
+        <!-- About Page -->
+        <div id="about" class="page">
+            <button class="back-button" onclick="hidePage('about')">Close</button>
+            <h2 class="page-title">About</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/about-photo.jpg" alt="About Me" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjM0EzQTNBIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjEyMCIgcj0iNDAiIGZpbGw9IiM2NjY2NjYiLz4KPHBhdGggZD0iTTEwMCAyMDBDMTAwIDE3Mi4zOSAxMjIuMzkgMTUwIDE1MCAxNTBDMTc3LjYxIDE1MCAyMDAgMTcyLjM5IDIwMCAyMDBWMjMwSDEwMFYyMDBaIiBmaWxsPSIjNjY2NjY2Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjOTk5OTk5IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPlByb2ZpbGUgUGhvdG88L3RleHQ+Cjwvc3ZnPg=='" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <p class="page-text">I'm a passionate designer with over five years of experience creating meaningful visual experiences. My work spans digital and print media, with a focus on clean, functional design that serves both aesthetic and practical purposes.</p>
+                    <p class="page-text">My approach combines strategic thinking with creative execution, always keeping the end user in mind. I believe great design should be both beautiful and purposeful.</p>
+                    <p class="page-text">When I'm not designing, you can find me exploring new creative techniques, studying design trends, or working on personal art projects that fuel my professional inspiration.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <button class="back-button" onclick="goHome()">← Back</button>
-        <h2 class="page-title">Contact</h2>
-        <p class="page-text">Let's collaborate on your next project. I'm always interested in working with clients who value thoughtful design and creative problem-solving.</p>
-        <p class="page-text">Whether you need brand identity, web design, print materials, or creative direction, I'd love to discuss how we can bring your vision to life.</p>
-        <p class="page-text">Reach out to start a conversation about your project needs and timeline. I typically respond within 24 hours and offer free initial consultations.</p>
-    </div>
+        <!-- Work Page -->
+        <div id="work" class="page">
+            <button class="back-button" onclick="hidePage('work')">Close</button>
+            <h2 class="page-title">Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="showLightbox('images/gallery/image1.jpg')">
+                    <img src="images/gallery/image1.jpg" alt="Project 1">
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/gallery/image2.jpg')">
+                    <img src="images/gallery/image2.jpg" alt="Project 2">
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/gallery/image3.jpg')">
+                    <img src="images/gallery/image3.jpg" alt="Project 3">
+                </div>
+                <div class="gallery-item" onclick="showLightbox('images/gallery/image4.jpg')">
+                    <img src="images/gallery/image4.jpg" alt="Project 4">
+                </div>
+            </div>
+        </div>
 
-    <div class="footer">© 2024 Design Portfolio</div>
-    <div class="version">v 1.1.24.001</div>
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <button class="back-button" onclick="hidePage('contact')">Close</button>
+            <h2 class="page-title">Contact</h2>
+            <p class="page-text">Let's collaborate on your next project. I'm always interested in working with clients who value thoughtful design and creative problem-solving.</p>
+            <p class="page-text">Whether you need brand identity, web design, print materials, or creative direction, I'd love to discuss how we can bring your vision to life.</p>
+            <p class="page-text">Reach out to start a conversation about your project needs and timeline. I typically respond within 24 hours and offer free initial consultations.</p>
+        </div>
 
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" onclick="hideLightbox()">×</button>
+            <img src="" alt="Lightbox Image" id="lightbox-image">
+        </div>
     </div>
 
     <script>
@@ -508,39 +520,42 @@
                 }, 800);
             }, 2000); // 2 second delay
         });
+
         function showPage(pageId) {
             // Show the selected page
             document.getElementById(pageId).classList.add('active');
         }
 
-        function goHome() {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+        function hidePage(pageId) {
+            // Hide the selected page
+            document.getElementById(pageId).classList.remove('active');
         }
 
-        function openLightbox(imageSrc, caption) {
+        function showLightbox(imageSrc) {
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxImg = document.getElementById('lightbox-image');
             const lightboxCaption = document.getElementById('lightbox-caption');
             
-            lightbox.style.display = 'block';
+            lightbox.classList.add('active');
             lightboxImg.src = imageSrc;
-            lightboxCaption.textContent = caption;
+            lightboxCaption.textContent = imageSrc.split('/').pop();
         }
 
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
+        function hideLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
         }
 
         // Add keyboard navigation
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const lightbox = document.getElementById('lightbox');
-                if (lightbox.style.display === 'block') {
-                    closeLightbox();
+                if (lightbox.classList.contains('active')) {
+                    hideLightbox();
                 } else {
-                    goHome();
+                    hidePage('about');
+                    hidePage('work');
+                    hidePage('contact');
                 }
             }
         });
