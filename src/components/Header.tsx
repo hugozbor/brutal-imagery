@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -50,43 +49,46 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-white p-2 hover:bg-gray-800 rounded-lg transition-colors duration-200 active:bg-gray-700"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-800">
-            <div className="flex flex-col space-y-4 pt-4">
-              <button 
-                onClick={() => scrollToSection('home')}
-                className="text-gray-300 hover:text-white transition-colors duration-300 tracking-wide text-left"
-              >
-                HOME
-              </button>
-              <button 
-                onClick={() => scrollToSection('portfolio')}
-                className="text-gray-300 hover:text-white transition-colors duration-300 tracking-wide text-left"
-              >
-                WORK
-              </button>
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-gray-300 hover:text-white transition-colors duration-300 tracking-wide text-left"
-              >
-                ABOUT
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-gray-300 hover:text-white transition-colors duration-300 tracking-wide text-left"
-              >
-                CONTACT
-              </button>
-            </div>
+        <div 
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="flex flex-col space-y-4 py-4 border-t border-gray-800 mt-4">
+            <button 
+              onClick={() => scrollToSection('home')}
+              className="text-gray-300 hover:text-white active:bg-gray-800 transition-colors duration-300 tracking-wide text-left py-3 px-2 rounded-lg"
+            >
+              HOME
+            </button>
+            <button 
+              onClick={() => scrollToSection('portfolio')}
+              className="text-gray-300 hover:text-white active:bg-gray-800 transition-colors duration-300 tracking-wide text-left py-3 px-2 rounded-lg"
+            >
+              WORK
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="text-gray-300 hover:text-white active:bg-gray-800 transition-colors duration-300 tracking-wide text-left py-3 px-2 rounded-lg"
+            >
+              ABOUT
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="text-gray-300 hover:text-white active:bg-gray-800 transition-colors duration-300 tracking-wide text-left py-3 px-2 rounded-lg"
+            >
+              CONTACT
+            </button>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );
