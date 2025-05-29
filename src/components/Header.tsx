@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowLeft } from 'lucide-react';
-import { useMobilePage } from '../hooks/useMobilePage';
+import { useMobilePage } from '../context/MobilePageContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMobilePage } from '../hooks/useMobilePage';
+import { useMobilePage } from '../context/MobilePageContext';
 import Header from './Header';
 import Hero from './Hero';
 import Portfolio from './Portfolio';
