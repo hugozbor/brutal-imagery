@@ -20,40 +20,40 @@ const Portfolio = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wider mb-4">
             SELECTED WORKS
           </h2>
-          <div className="w-16 sm:w-24 h-0.5 bg-white mx-auto"></div>
+          <div className="w-16 sm:w-24 h-0.5 bg-red-500 mx-auto"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {artworks.map((artwork) => (
             <div
               key={artwork.id}
-              className={`group cursor-pointer overflow-hidden bg-gray-900 hover:bg-gray-800 active:bg-gray-700 transition-all duration-300 ${
+              className={`group cursor-pointer overflow-hidden bg-red-900 hover:bg-red-800 active:bg-red-700 transition-all duration-300 ${
                 artwork.size === 'large' ? 'md:col-span-2 lg:col-span-2 h-[40vh] sm:h-80' :
                 artwork.size === 'medium' ? 'h-[30vh] sm:h-64' : 'h-[25vh] sm:h-48'
               }`}
             >
-              <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+              <div className="relative w-full h-full bg-gradient-to-br from-red-900 to-red-950 flex items-center justify-center">
                 {/* Placeholder for artwork */}
-                <div className="absolute inset-0 bg-gray-700 opacity-20"></div>
+                <div className="absolute inset-0 bg-red-800 opacity-20"></div>
                 
                 <div className="relative z-10 text-center p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                   <h3 className="text-lg sm:text-xl font-light tracking-wide mb-2">
                     {artwork.title}
                   </h3>
-                  <p className="text-gray-400 text-sm tracking-wider">
+                  <p className="text-gray-300 text-sm tracking-wider">
                     {artwork.category}
                   </p>
                 </div>
 
                 {/* Hover/Touch overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-40 sm:opacity-0 sm:group-hover:opacity-60 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-red-950/80 opacity-40 sm:opacity-0 sm:group-hover:opacity-60 transition-opacity duration-300"></div>
               </div>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-12">
-          <button className="inline-flex items-center text-white border border-white px-6 sm:px-8 py-3 hover:bg-white hover:text-black active:bg-gray-200 transition-all duration-300 tracking-wider">
+          <button className="inline-flex items-center text-white border border-white px-6 sm:px-8 py-3 hover:bg-white hover:text-red-900 active:bg-gray-200 transition-all duration-300 tracking-wider">
             VIEW ALL WORKS
           </button>
         </div>

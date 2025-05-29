@@ -9,7 +9,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="h-[100svh] flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900 opacity-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-red-950 via-red-900 to-red-950 opacity-50"></div>
       
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-light mb-6 tracking-wider animate-fade-in">
@@ -23,7 +23,7 @@ const Hero = () => {
         
         <button
           onClick={scrollToPortfolio}
-          className="inline-flex items-center text-white border border-white px-8 py-3 hover:bg-white hover:text-black transition-all duration-300 tracking-wider animate-fade-in"
+          className="inline-flex items-center text-white border border-white px-8 py-3 hover:bg-white hover:text-red-900 transition-all duration-300 tracking-wider animate-fade-in"
         >
           VIEW WORK
           <ChevronDown className="ml-2" size={20} />
