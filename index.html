@@ -97,6 +97,20 @@
         .menu-container {
             position: relative;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .big-logo {
+            width: 300px;
+            margin-bottom: 40px;
+        }
+
+        .big-logo img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .menu-button {
@@ -104,7 +118,7 @@
             background: transparent;
             border: none;
             color: #cccccc;
-            font-size: 18px;
+            font-size: 28px;
             font-weight: 400;
             padding: 12px 0;
             text-align: left;
@@ -112,7 +126,7 @@
             transition: all 0.2s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             width: 200px;
             position: relative;
             z-index: 1;
@@ -287,13 +301,13 @@
 
         /* Update mobile styles for gallery */
         @media (max-width: 768px) {
+            .menu-button {
+                font-size: 24px;
+                width: 180px;
+            }
+
             .main-screen {
                 padding-left: 30px;
-            }
-            
-            .menu-button {
-                font-size: 16px;
-                width: 180px;
             }
             
             .page {
@@ -355,6 +369,11 @@
                 right: 15px;
                 top: 15px;
             }
+
+            .big-logo {
+                width: 240px;
+                margin-bottom: 30px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -363,14 +382,32 @@
                 height: 120px;
             }
 
-            .main-screen {
-                padding-left: 20px;
-            }
-
             .menu-button {
-                font-size: 14px;
+                font-size: 22px;
                 width: 160px;
                 padding: 10px 0;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .main-screen {
+                padding-left: 0;
+                justify-content: center;
+            }
+
+            .footer {
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 10px;
+            }
+
+            .version {
+                right: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 10px;
             }
 
             .page {
@@ -406,13 +443,11 @@
                 object-fit: cover;
             }
 
-            .footer {
-                left: 20px;
-                font-size: 10px;
-            }
-
-            .version {
-                font-size: 10px;
+            .big-logo {
+                width: 200px;
+                margin-bottom: 25px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
@@ -466,11 +501,14 @@
     <div class="main-container">
         <div class="main-screen">
             <div class="menu-container">
+                <div class="big-logo">
+                    <img src="images/big-logo.png" alt="HUGOZBOR Logo">
+                </div>
                 <button class="menu-button" onclick="showPage('about')">About</button>
                 <button class="menu-button" onclick="showPage('work')">Work</button>
                 <button class="menu-button" onclick="showPage('contact')">Contact</button>
             </div>
-            <div class="footer">© 2024 Design Portfolio</div>
+            <div class="footer">© HUGOZBOR</div>
             <div class="version">v1.0</div>
         </div>
 
